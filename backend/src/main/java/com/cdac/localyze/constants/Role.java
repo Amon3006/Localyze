@@ -1,4 +1,4 @@
-package com.cdac.localyze.enums;
+package com.cdac.localyze.constants;
 
 public enum Role {
  USER,
