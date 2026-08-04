@@ -10,7 +10,6 @@
     </parent>
 
     <artifactId>search-service</artifactId>
-    <version>1.0.0-SNAPSHOT</version>
     <packaging>jar</packaging>
 
     <name>search-service</name>
@@ -32,7 +31,6 @@
         <dependency>
             <groupId>com.localyze</groupId>
             <artifactId>common-lib</artifactId>
-            <version>1.0.0-SNAPSHOT</version>
         </dependency>
 <dependency>
     <groupId>com.cloudinary</groupId>
@@ -57,7 +55,6 @@
         <dependency>
             <groupId>org.springdoc</groupId>
             <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
-            <version>2.5.0</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>

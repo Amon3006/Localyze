@@ -25,5 +25,5 @@ public class RegisterRequest {
 
     private String phone;
     private String city;
-    private Role role = Role.CUSTOMER;
+    private Role role = Role.USER;
 }

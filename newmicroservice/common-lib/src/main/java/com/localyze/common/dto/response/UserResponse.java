@@ -21,4 +21,5 @@ public class UserResponse {
     private String city;
     private boolean active;
     private LocalDateTime createdAt;
+    
 }

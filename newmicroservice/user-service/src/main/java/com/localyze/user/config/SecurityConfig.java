@@ -1,4 +1,4 @@
-﻿package com.localyze.user.config;
+package com.localyze.user.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

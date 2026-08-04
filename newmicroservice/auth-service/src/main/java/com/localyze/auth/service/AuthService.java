@@ -45,7 +45,7 @@ public class AuthService {
         AuthUser user = AuthUser.builder()
                 .email(request.getEmail())
                 .passwordHash(passwordEncoder.encode(request.getPassword()))
-                .role(request.getRole() != null ? request.getRole() : Role.CUSTOMER)
+                .role(request.getRole() != null ? request.getRole() : Role.USER)
                 .enabled(true)
                 .build();
 

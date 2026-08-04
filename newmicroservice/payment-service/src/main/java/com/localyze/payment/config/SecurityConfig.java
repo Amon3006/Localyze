@@ -1,4 +1,4 @@
-﻿package com.localyze.payment.config;
+package com.localyze.payment.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

@@ -28,7 +28,7 @@ public class NotificationRestClient {
                     "type", "PASSWORD_RESET",
                     "data", Map.of("token", resetToken)
             );
-            
+          
             ResponseEntity<String> response = restTemplate.postForEntity(url, request, String.class);
             log.info("Notification service response: {}", response.getStatusCode());
         } catch (Exception e) {

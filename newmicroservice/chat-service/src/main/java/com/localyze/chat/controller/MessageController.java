@@ -75,6 +75,8 @@ public class MessageController {
                 .timestamp(LocalDateTime.now())
                 .build());
     }
+    
+    
 
     @PutMapping("/{messageId}/read")
     @Operation(summary = "Mark message as read")

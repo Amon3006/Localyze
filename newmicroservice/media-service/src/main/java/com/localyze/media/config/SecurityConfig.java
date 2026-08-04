@@ -1,4 +1,4 @@
-﻿package com.localyze.media.config;
+package com.localyze.media.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -17,4 +17,5 @@ public class SecurityConfig {
         return http.build();
     }
 }
+
 

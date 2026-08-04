@@ -1,4 +1,4 @@
-﻿package com.localyze.search.config;
+package com.localyze.search.config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;

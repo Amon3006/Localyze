@@ -42,7 +42,6 @@
         <dependency>
             <groupId>com.localyze</groupId>
             <artifactId>common-lib</artifactId>
-            <version>1.0.0-SNAPSHOT</version>
         </dependency>
         <!-- Lombok -->
         <dependency>

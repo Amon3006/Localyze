@@ -27,7 +27,7 @@ spring:
             allowCredentials: true
             maxAge: 3600
       default-filters:
-        - DedupeResponseHeader=Access-Control-Allow-Credentials Access-Control-Allow-Origin
+        - DedupeResponseHeader=Access-Control-Allow-Origin Access-Control-Allow-Credentials, RETAIN_UNIQUE
         - AddRequestHeader=X-Forwarded-Host, localhost:8080
         - AddRequestHeader=X-Forwarded-Port, 8080
         - AddRequestHeader=X-Forwarded-Proto, http
@@ -104,7 +104,7 @@ eureka:
     prefer-ip-address: true
 
 jwt:
-  secret: ${JWT_SECRET:your-256-bit-base64-encoded-secret-key-here-change-in-production}
+  secret: ${JWT_SECRET:dGhpcyBpcyBhIHZlcnkgc2VjdXJlIGtleSBmb3IgbG9jYWx5emUgand0IHRva2VuIGdlbmVyYXRpb24gMjAyNA==}
   expiration-ms: ${JWT_EXPIRATION_MS:86400000}
 
 springdoc:

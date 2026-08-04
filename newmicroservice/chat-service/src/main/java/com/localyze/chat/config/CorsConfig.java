@@ -1,4 +1,4 @@
-﻿package com.localyze.chat.config;
+package com.localyze.chat.config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
