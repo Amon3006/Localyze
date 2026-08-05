@@ -23,12 +23,9 @@ export default function Messages() {
 
   const fetchMessages = async () => {
     try {
-      const res = await messageService.getBookingMessages(bookingId);
+      const res = await messageService.getByBooking(bookingId);
       setMessages(res.data || []);
-    } catch (err) {
-      console.error('Failed to fetch booking messages:', err);
-      showToast.error(err.response?.data?.message || 'Failed to load messages');
-    }
+    } catch (err) { console.error(err); }
   };
 
   useEffect(() => {
@@ -56,12 +53,11 @@ export default function Messages() {
     if (!newMessage.trim()) return;
     setSending(true);
     try {
-      await messageService.sendMessage({ bookingId: parseInt(bookingId), content: newMessage.trim() });
+      await messageService.send({ bookingId: parseInt(bookingId), content: newMessage.trim() });
       setNewMessage('');
       await fetchMessages();
     } catch (err) {
-      console.error('Failed to send message:', err);
-      showToast.error(err.response?.data?.message || 'Failed to send message');
+      showToast.error('Failed to send message');
     } finally { setSending(false); }
   };
 

@@ -1,17 +1,15 @@
 import api from './api';
 
 const messageService = {
+  // existing method names
   getBookingMessages: (bookingId) => api.get(`/messages/booking/${bookingId}`),
-
   sendMessage: (data) => api.post('/messages', data),
-
   markAsRead: (messageId) => api.put(`/messages/${messageId}/read`),
-
   getUnreadCount: () => api.get('/messages/unread-count'),
 
-  // Backward compatibility aliases
-  getByBooking: (bookingId) => api.get(`/messages/booking/${bookingId}`),
-  send: (data) => api.post('/messages', data),
+  // aliases expected by UI
+  getByBooking: (bookingId) => messageService.getBookingMessages(bookingId),
+  send: (data) => messageService.sendMessage(data),
 };
 
 export default messageService;

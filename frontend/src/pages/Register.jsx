@@ -9,7 +9,7 @@ import { validateEmail, validatePhone, validatePassword, validateFullName, valid
 
 export default function Register() {
   const [role, setRole] = useState('USER');
-  const [form, setForm] = useState({ name: '', email: '', phone: '', password: '', confirmPassword: '' });
+  const [form, setForm] = useState({ fullName: '', email: '', phone: '', password: '', confirmPassword: '' });
   const [errors, setErrors] = useState({});
   const [loading, setLoading] = useState(false);
   const [agreed, setAgreed] = useState(false);
@@ -76,8 +76,8 @@ export default function Register() {
           </div>
 
           <form onSubmit={handleSubmit} className="space-y-4">
-            <Input label="Full Name" name="name" icon={User} placeholder="John Doe"
-              value={form.name} onChange={handleChange} error={errors.name} />
+            <Input label="Full Name" name="fullName" icon={User} placeholder="John Doe"
+              value={form.fullName} onChange={handleChange} error={errors.fullName} />
             <Input label="Email" name="email" type="email" icon={Mail} placeholder="you@example.com"
               value={form.email} onChange={handleChange} error={errors.email} />
             <Input label="Phone" name="phone" icon={Phone} placeholder="9876543210"
@@ -86,8 +86,6 @@ export default function Register() {
               value={form.password} onChange={handleChange} error={errors.password} />
             <Input label="Confirm Password" name="confirmPassword" type="password" icon={Lock} placeholder="Repeat password"
               value={form.confirmPassword} onChange={handleChange} error={errors.confirmPassword} />
-            <Input label="City" name="city" type="text" icon={MapPin} placeholder="Enter your city"
-              value={form.city} onChange={handleChange} error={errors.city} />
 
             <label className="flex items-start gap-2 text-sm text-gray-600 dark:text-gray-400">
               <input type="checkbox" checked={agreed} onChange={(e) => setAgreed(e.target.checked)} className="mt-1 rounded" />
