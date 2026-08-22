@@ -10,10 +10,7 @@ import org.springframework.stereotype.Service;
 import jakarta.mail.MessagingException;
 import jakarta.mail.internet.MimeMessage;
 
-/**
- * Handles sending transactional emails (verification, password reset)
- * asynchronously to avoid blocking the calling thread.
- */
+
 @Service
 @RequiredArgsConstructor
 public class EmailService {
@@ -23,13 +20,6 @@ public class EmailService {
     @Value("${spring.mail.username}")
     private String fromEmail;
 
-    /**
-     * Sends an email verification link to the newly registered user.
-     *
-     * @param to    recipient email address
-     * @param name  recipient's full name
-     * @param token the verification token
-     */
     @Async
     public void sendVerificationEmail(String to, String name, String token) {
         String subject = "Localyze - Verify Your Email";
@@ -47,13 +37,6 @@ public class EmailService {
         sendHtmlEmail(to, subject, body);
     }
 
-    /**
-     * Sends a password reset link to the user.
-     *
-     * @param to    recipient email address
-     * @param name  recipient's full name
-     * @param token the password reset token
-     */
     @Async
     public void sendPasswordResetEmail(String to, String name, String token) {
         String subject = "Localyze - Reset Your Password";
@@ -71,13 +54,6 @@ public class EmailService {
         sendHtmlEmail(to, subject, body);
     }
 
-    /**
-     * Sends an HTML email using the configured mail sender.
-     *
-     * @param to       recipient email address
-     * @param subject  email subject
-     * @param htmlBody HTML email body
-     */
     private void sendHtmlEmail(String to, String subject, String htmlBody) {
         try {
             MimeMessage message = mailSender.createMimeMessage();

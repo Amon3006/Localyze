@@ -12,23 +12,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-/**
- * Handles image upload and deletion operations via the Cloudinary SDK.
- * All uploads go to the "localyze" folder with auto quality and format optimization.
- */
+
 @Service
 @RequiredArgsConstructor
 public class CloudinaryService {
 
     private final Cloudinary cloudinary;
 
-    /**
-     * Uploads a single image to Cloudinary and returns the secure URL and public ID.
-     *
-     * @param file the image file to upload
-     * @return a map containing "url" (secure URL) and "publicId"
-     * @throws FileUploadException if the upload fails
-     */
     @SuppressWarnings("unchecked")
     public Map<String, String> uploadImage(MultipartFile file) {
         try {
@@ -49,13 +39,7 @@ public class CloudinaryService {
         }
     }
 
-    /**
-     * Uploads multiple images (maximum 5) to Cloudinary.
-     *
-     * @param files the list of image files to upload
-     * @return a list of maps, each containing "url" and "publicId"
-     * @throws FileUploadException if more than 5 files are provided or upload fails
-     */
+
     public List<Map<String, String>> uploadImages(List<MultipartFile> files) {
         if (files.size() > 5) {
             throw new FileUploadException("Maximum 5 images allowed");
@@ -67,12 +51,6 @@ public class CloudinaryService {
         return results;
     }
 
-    /**
-     * Deletes an image from Cloudinary by its public ID.
-     *
-     * @param publicId the Cloudinary public ID of the image
-     * @throws FileUploadException if the deletion fails
-     */
     public void deleteImage(String publicId) {
         try {
             cloudinary.uploader().destroy(publicId, ObjectUtils.emptyMap());

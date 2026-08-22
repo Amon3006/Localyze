@@ -24,10 +24,6 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 import java.util.stream.Collectors;
 
-/**
- * Manages reviews for completed bookings. Enforces one review per booking
- * and automatically recalculates service average ratings on changes.
- */
 @Service
 @RequiredArgsConstructor
 public class ReviewService {
@@ -38,15 +34,6 @@ public class ReviewService {
     private final UserRepository userRepository;
     private final ReviewMapper reviewMapper;
 
-    /**
-     * Creates a review for a completed booking. Each booking can only have one review.
-     *
-     * @param userEmail the reviewer's email
-     * @param request   the review request containing bookingId, rating, and comment
-     * @return the created review response
-     * @throws UnauthorizedException if the user does not own the booking
-     * @throws BadRequestException   if the booking is not completed or already reviewed
-     */
     @Transactional
     public ReviewResponse createReview(String userEmail, ReviewRequest request) {
         User user = userRepository.findByEmail(userEmail)
@@ -84,14 +71,6 @@ public class ReviewService {
         return reviewMapper.toResponse(review);
     }
 
-    /**
-     * Retrieves paginated reviews for a specific service.
-     *
-     * @param serviceId the service ID
-     * @param page      page number (0-based)
-     * @param size      page size
-     * @return paginated review responses
-     */
     public PagedResponse<ReviewResponse> getServiceReviews(Long serviceId, int page, int size) {
         Pageable pageable = PageRequest.of(page, size, Sort.by(Sort.Direction.DESC, "createdAt"));
         Page<Review> reviewPage = reviewRepository.findByServiceIdAndIsDeletedFalse(serviceId, pageable);
@@ -110,16 +89,6 @@ public class ReviewService {
                 .build();
     }
 
-    /**
-     * Updates a review's rating and/or comment. Only the review author can edit.
-     *
-     * @param id        the review ID
-     * @param userEmail the authenticated user's email
-     * @param rating    the new rating (nullable)
-     * @param comment   the new comment (nullable)
-     * @return the updated review response
-     * @throws UnauthorizedException if the user does not own the review
-     */
     @Transactional
     public ReviewResponse updateReview(Long id, String userEmail, Integer rating, String comment) {
         Review review = reviewRepository.findById(id)
@@ -138,14 +107,6 @@ public class ReviewService {
         return reviewMapper.toResponse(review);
     }
 
-    /**
-     * Soft-deletes a review. Only the review author can delete.
-     * Recalculates the service's average rating after deletion.
-     *
-     * @param id        the review ID
-     * @param userEmail the authenticated user's email
-     * @throws UnauthorizedException if the user does not own the review
-     */
     @Transactional
     public void deleteReview(Long id, String userEmail) {
         Review review = reviewRepository.findById(id)
@@ -160,10 +121,6 @@ public class ReviewService {
         updateServiceRating(review.getService().getId());
     }
 
-    /**
-     * Recalculates and persists the average rating and total review count
-     * for the given service based on all non-deleted reviews.
-     */
     private void updateServiceRating(Long serviceId) {
         ServiceEntity service = serviceRepository.findById(serviceId).orElse(null);
         if (service == null) return;
